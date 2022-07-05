@@ -19,20 +19,21 @@ def index():
 
 @app.route('/submit', methods=['POST'])
 def submit():
-    if request.method == 'POST':
-        customer = request.form['customer']
-        dealer = request.form['dealer']
-        rating = request.form['rating']
-        comments = request.form['comments']
-        cursor = mysql.connection.cursor()
-        cursor.execute(''' INSERT INTO feedback VALUES(%s,%s,%s,%s)''',(customer, dealer, rating, comments))
-        
+        if request.method == 'POST':
+            customer = request.form['customer']
+            dealer = request.form['dealer']
+            rating = request.form['rating']
+            comments = request.form['comments']
+            cur = mysql.connection.cursor()
+            cur.execute("INSERT INTO feedback(customer, dealer, rating, comments) VALUES (%s, %s, %s, %s)", (customer, dealer, rating, comments))
+            mysql.connection.commit()
+            cur.close()
+        # print(customer, dealer, rating, comments)
         if customer == '' or dealer == '':
             return render_template('index.html', message='Please enter required fields')
-        else:
-            return render_template('success.html')
-        mysql.connection.commit()
-        cursor.close()
+        return render_template('success.html')         
+        
    
 
-app.run(host='localhost', port=5000)
+if __name__ == '__main__':
+    app.run()
