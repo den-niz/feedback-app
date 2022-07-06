@@ -9,6 +9,7 @@ app.config['MYSQL_PASSWORD'] = '15434603'
 app.config['MYSQL_DB'] = 'heroku_3da0faa61686dd7'
 
 mysql = MySQL(app)
+mysql.init_app(app)
 
 @app.route('/')
 def index():
