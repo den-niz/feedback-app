@@ -3,14 +3,12 @@ from flask_mysqldb import MySQL
 
 app = Flask(__name__)
 
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = ''
-app.config['MYSQL_DB'] = 'lexus'
+app.config['MYSQL_HOST'] = 'us-cdbr-east-06.cleardb.net'
+app.config['MYSQL_USER'] = 'b83699d4ef4d2f'
+app.config['MYSQL_PASSWORD'] = '15434603'
+app.config['MYSQL_DB'] = 'heroku_3da0faa61686dd7'
 
 mysql = MySQL(app)
-
-
 
 @app.route('/')
 def index():
